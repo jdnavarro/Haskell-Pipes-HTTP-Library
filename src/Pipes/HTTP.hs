@@ -84,7 +84,7 @@ withHTTP r m k = withResponse r m k'
   where
     k' resp = do
         let p = (from . brRead . responseBody) resp
-        k (resp { responseBody = p})
+        k (resp { responseBody = p })
 {-# INLINABLE withHTTP #-}
 
 -- | Create a 'RequestBody' from a content length and 'Producer'
@@ -115,7 +115,7 @@ to p0 k = do
                 Right (bs, p') -> do
                     writeIORef ioref p'
                     return bs
-    k readAction 
+    k readAction
 
 from :: IO ByteString -> Producer ByteString IO ()
 from io = go
@@ -124,4 +124,4 @@ from io = go
         bs <- lift io
         unless (B.null bs) $ do
             yield bs
-            go 
+            go
